@@ -62,4 +62,22 @@ class TodoControllerTest extends TestCase
         $res->assertstatus(422);
     }
 
+     /**
+     * @test
+     */
+    public function Todoの更新処理が成功する()
+    {
+        $todo = Todo::factory()->create();
+        $res = $this->putJson(route('api.todo.update',$todo->id), [
+            'title' => '投稿の更新',
+            'content' => '投稿の更新をしました',
+        ]);
+
+        $this->assertDatabaseHas('todos', [
+            'title' => '投稿の更新',
+            'content' => '投稿の更新をしました',
+        ]);
+    }
+
+
 }
