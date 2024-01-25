@@ -94,5 +94,18 @@ class TodoControllerTest extends TestCase
         $res->assertstatus(422);
     }
 
+    /**
+     * @test
+     */
+    public function 更新処理の際に256文字以上の入力があった場合に失敗する()
+    {
+        $todo = Todo::factory()->create();
+        $res = $this->putJson(route('api.todo.update',$todo->id), [
+            'title' => str_repeat('a', 256),
+        ]
+        );
+        $res->assertstatus(422);
+    }
+
 
 }
