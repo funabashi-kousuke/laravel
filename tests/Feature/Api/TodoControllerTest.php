@@ -49,4 +49,17 @@ class TodoControllerTest extends TestCase
         $res->assertstatus(422);
     }
 
+    /**
+     * @test
+     */
+    public function Todoの新規作成時に256文字以上の入力があった場合に新規作成ができない()
+    {
+        $params = [
+            `title` => str_repeat('a', 256),
+        ];
+
+        $res = $this->postJson(route('api.todo.create'), $params);
+        $res->assertstatus(422);
+    }
+
 }
