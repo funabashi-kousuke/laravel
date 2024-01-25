@@ -62,7 +62,7 @@ class TodoControllerTest extends TestCase
         $res->assertstatus(422);
     }
 
-     /**
+    /**
      * @test
      */
     public function Todoの更新処理が成功する()
@@ -77,6 +77,21 @@ class TodoControllerTest extends TestCase
             'title' => '投稿の更新',
             'content' => '投稿の更新をしました',
         ]);
+    }
+
+    /**
+     * @test
+     */
+    public function 更新処理の際に期待しない情報の入力があった場合に失敗する()
+    {
+        $todo = Todo::factory()->create();
+        $res = $this->putJson(route('api.todo.update',$todo->id), [
+            // tesuto,tesuto1は存在しないカラム
+            'tesuto' => '投稿の更新',
+            'tesuto1' => '投稿の更新をしました',
+        ]);
+
+        $res->assertstatus(422);
     }
 
 
