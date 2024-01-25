@@ -130,15 +130,4 @@ class TodoControllerTest extends TestCase
         $res->assertstatus(404);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $todo = Todo::FindOrFail($id);
-    }
-
 }
