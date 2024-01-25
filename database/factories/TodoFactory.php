@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Todo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class TodoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->text(20),
+            'content' => fake()->text(50),
         ];
     }
 }
