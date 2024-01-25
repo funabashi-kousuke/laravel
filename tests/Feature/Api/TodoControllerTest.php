@@ -7,6 +7,8 @@ use App\Models\Todo;
 // use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class TodoControllerTest extends TestCase
 {
