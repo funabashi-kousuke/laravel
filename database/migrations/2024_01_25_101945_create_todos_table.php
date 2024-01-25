@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
+            $table->text('title');  /* 追加 */
+            $table->text('content');  /* 追加 */
             $table->timestamps();
+            $table->softDeletes(); /* 追加 */
         });
     }
 
