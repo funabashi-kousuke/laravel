@@ -45,10 +45,11 @@ class TodoControllerTest extends TestCase
     /**
      * @test
      */
-    public function Todoの新規作成時に期待しない情報の入力があった場合に新規作成失敗()
+    public function Todoの新規作成時に未入力があった際に新規作成失敗()
     {
         $params = [
-            'name' => 'taro',
+            'title' => null,
+            'content' => 'コンテンツ',
         ];
 
         $res = $this->postJson(route('api.todo.create'), $params);
