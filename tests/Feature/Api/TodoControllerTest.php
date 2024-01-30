@@ -141,4 +141,28 @@ class TodoControllerTest extends TestCase
         $res->assertstatus(404);
     }
 
+    /**
+     * @test
+     */
+    public function 削除が成功する(): void
+    {
+        // 一度新規投稿を作成してdbに保存されているか確認
+        $todo = Todo::factory()->create([
+            'title' => 'タイトル',
+            'content' => 'コンテンツ'
+        ]);
+
+        $this->assertDatabaseHas('todos', [
+            'title' => 'タイトル',
+            'content' => 'コンテンツ',
+        ]);
+
+        // 削除処理
+        $this->delete(route('api.todo.destroy', $todo->id));
+        $this->assertDatabaseMissing('todos', [
+            'title' => 'タイトル',
+            'content' => 'コンテンツ'
+        ]);
+    }
+
 }
