@@ -93,6 +93,7 @@ class TodoControllerTest extends TestCase
     {
         $todo = Todo::factory()->create();
         $res = $this->putJson(route('api.todo.update',$todo->id), [
+            // tesuto,tesuto1は存在しないカラム
             'title' => null,
             'content' => '投稿の更新をしました',
         ]);
@@ -118,9 +119,13 @@ class TodoControllerTest extends TestCase
      */
     public function 詳細取得が成功する()
     {
-        $todo = Todo::factory()->create();
-        $res = $this->getJson(route('api.todo.show',$todo->id));
-        $res->assertOk();
+        $todo = Todo::factory()->create([
+            'title' => 'タイトル',
+            'content' => 'コンテンツ'
+        ]);
+        $paka = $this->getJson(route('api.todo.show',$todo->id));
+        $paka->assertstatus(200);
+        $paka->assertJson(['title' => 'タイトル', 'content' => 'コンテンツ']);
     }
 
     /**
