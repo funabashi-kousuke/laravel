@@ -55,6 +55,7 @@ class TodoController extends Controller
     public function show($id)
     {
         $todo = Todo::FindOrFail($id);
+        return response()->json( $todo );
     }
 
 }
