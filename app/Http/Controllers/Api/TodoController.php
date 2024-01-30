@@ -58,5 +58,14 @@ class TodoController extends Controller
         return response()->json( $todo );
     }
 
+    /**
+    * destroy function
+    * @param int $id
+    * @return Response
+    */
+    public function destroy(int $id)
+    {
+        $this->todo->findOrFail($id)->delete();
+    }
 }
 
